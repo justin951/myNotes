@@ -30,10 +30,12 @@ selenium-continued
 │  │     ├─ heads
 │  │     │  └─ main
 │  │     └─ remotes
+│  │        └─ origin
+│  │           └─ main
 │  ├─ objects
 │  │  ├─ 07
 ...
-│  │  │  └─ 0250e276af49a062d45b0aacd793ce7346e0a9
+│  │  │  └─ 66348a60fcd3f4ea9961138a5ddbbb848506e1
 │  │  ├─ info
 │  │  └─ pack
 │  ├─ ORIG_HEAD
@@ -42,6 +44,8 @@ selenium-continued
 │     ├─ heads
 │     │  └─ main
 │     ├─ remotes
+│     │  └─ origin
+│     │     └─ main
 │     └─ tags
 ├─ .gitignore
 ├─ .idea
@@ -50,9 +54,15 @@ selenium-continued
 │  ├─ misc.xml
 │  └─ workspace.xml
 ├─ pom.xml
+├─ README.md
 └─ src
    ├─ main
+   │  ├─ codewars
+   │  │  └─ OOP
    │  ├─ java
+   │  │  ├─ OOP
+   │  │  │  ├─ Main.java
+   │  │  │  └─ Person.java
    │  │  └─ testingAutomation
    │  │     ├─ Main.java
    │  │     └─ pom
