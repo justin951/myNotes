@@ -27,7 +27,9 @@ Here’s how you can stop Git from tracking the `notes` folder:
 
 This process will stop Git from tracking the `notes` folder, and since it’s now in the `.gitignore` file, future changes to this folder will not be tracked or pushed to the remote repository.
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+***
+***
+***
 
 The error you're seeing indicates that Git is not tracking the `notes` folder at the moment. However, if the folder is still being pushed to the remote repository, it may be due to one of the following reasons:
 
@@ -71,4 +73,65 @@ Here’s how you can troubleshoot:
 
    This command removes all files from the cache and then re-adds them according to the current `.gitignore` rules, ensuring the `notes` folder stays ignored.
 
-Let me know if this resolves the issue!
+***
+***
+***
+
+It seems like the `revature` folder is being re-added due to either a misconfiguration in your `.gitignore` file or a misunderstanding of how paths are handled in `.gitignore`. To resolve this issue, let's go through a few things:
+
+### Check and Update `.gitignore` for the `revature` Folder
+
+1. **Verify the path in `.gitignore`:**
+
+   The line in your `.gitignore` for ignoring the `revature` folder is:
+   
+   ```
+   /java/revature/
+   ```
+
+   This seems incorrect for your folder structure. Since your `revature` folder is located under `src/main/java`, you should adjust the `.gitignore` entry like this:
+   
+   ```bash
+   /src/main/java/revature/
+   ```
+
+   This tells Git to ignore the `revature` folder at the specific path: `src/main/java/revature/`.
+
+2. **Remove tracking for `revature` folder**:
+
+   After fixing the `.gitignore` entry, use the following command to stop tracking the folder again:
+
+   ```bash
+   git rm -r --cached src/main/java/revature
+   ```
+
+3. **Add the changes to Git:**
+
+   After running the `git rm` command, stage the changes:
+
+   ```bash
+   git add .gitignore
+   git add src/main/java/revature/
+   ```
+
+   This ensures that Git knows about the removal of the folder from its tracking.
+
+4. **Commit the changes**:
+
+   Now, commit these changes to finalize:
+
+   ```bash
+   git commit -m "Fix .gitignore and stop tracking revature folder"
+   ```
+
+5. **Push the changes to the remote repository** (if necessary):
+
+   ```bash
+   git push origin main
+   ```
+
+### Double Check:
+- Ensure that there are no trailing spaces or extra characters in the `.gitignore` file.
+- If `.gitignore` still doesn’t seem to be working, try specifying the full path relative to the root of your repository.
+
+After these steps, Git should properly ignore the `revature` folder, and it should no longer be added during `git add .`.
