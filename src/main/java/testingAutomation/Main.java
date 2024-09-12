@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import testingAutomation.pom.APITestingIQ;
+import testingAutomation.pom.BasePage;
 import testingAutomation.pom.TestingAutomationIQ;
 import testingAutomation.pom.TestingFundamentalsIQ;
 
@@ -27,26 +28,25 @@ public class Main {
             testingAutomationIQ.saveQuestionAndAnswerMapToFile(filepath);
 
             APITestingIQ apiTestingIQ = new APITestingIQ(driver);
-            apiTestingIQ.goToTestingAutomationIQ();
-            apiTestingIQ.verifyOnTestingAutomationIQPage();
-            apiTestingIQ.getAllQuestions();
-            apiTestingIQ.getAllAnswers();
-            apiTestingIQ.printQuestionAndAnswerMap();
             filepath = "src\\main\\resources\\apiTestingIQ.txt";
-            apiTestingIQ.saveQuestionAndAnswerMapToFile(filepath);
+            runTest(apiTestingIQ, filepath);
 
             TestingFundamentalsIQ testingFundamentalsIQ = new TestingFundamentalsIQ(driver);
-            testingFundamentalsIQ.goToTestingAutomationIQ();
-            testingFundamentalsIQ.verifyOnTestingAutomationIQPage();
-            testingFundamentalsIQ.getAllQuestions();
-            testingFundamentalsIQ.getAllAnswers();
-            testingFundamentalsIQ.printQuestionAndAnswerMap();
             filepath = "src\\main\\resources\\testingFundamentalsIQ.txt";
-            testingFundamentalsIQ.saveQuestionAndAnswerMapToFile(filepath);
+            runTest(testingFundamentalsIQ, filepath);
         } finally {
             if (driver != null) {
                 driver.quit();
             }
         }
+    }
+
+    private static void runTest(BasePage page, String filepath) {
+        page.gotToPage();
+        page.verifyOnPage("interviewquestions | repo to hold the interview preparation questions");
+        page.getAllQuestions();
+        page.getAllAnswers();
+        page.printQuestionAndAnswerMap();
+        page.saveQuestionAndAnswerMapToFile(filepath);
     }
 }

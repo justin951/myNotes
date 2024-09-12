@@ -12,36 +12,36 @@ import java.time.Duration;
 
 public class Main {
   public static void main(String[] args) {
-    // WebDriver driver = null;
-    // try {
-    //   driver = new EdgeDriver();
-    //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-    //   WikiHome wikiHome = new WikiHome(driver);
-    //   PuppyPage puppyPage = new PuppyPage(driver);
-
-    //   wikiHome.gotToWikipediaHome();
-    //   wikiHome.enterTextIntoSearchBar("puppy");
-    //   wikiHome.clickSearchButton();
-    //   puppyPage.verifyOnPuppyPage();
-    //   System.out.println(puppyPage.verifyOnPuppyPage());
-    // } finally {
-    //   if (driver != null) {
-    //     driver.quit();
-    //   }
-    // }
-
     WebDriver driver = null;
     try {
-      driver = new ChromeDriver();
+      driver = new EdgeDriver();
       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+      WikiHome wikiHome = new WikiHome(driver);
+      PuppyPage puppyPage = new PuppyPage(driver);
+
+      wikiHome.gotToWikipediaHome();
+      wikiHome.enterTextIntoSearchBar("puppy");
+      wikiHome.clickSearchButton();
+      puppyPage.verifyOnPuppyPage();
+      System.out.println(puppyPage.verifyOnPuppyPage());
+    } finally {
+      if (driver != null) {
+        driver.quit();
+      }
+    }
+
+    WebDriver driver2 = null;
+    try {
+      driver2 = new ChromeDriver();
+      driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
 
       AutomationPracticePage autoPage = new AutomationPracticePage(driver);
       autoPage.goToAutomationPracticePage();
       autoPage.getAllSelectedRows();
       autoPage.getFirstSelectedRow();
     } finally {
-      if (driver != null) {
-        driver.quit();
+      if (driver2 != null) {
+        driver2.quit();
       }
     }
   }
