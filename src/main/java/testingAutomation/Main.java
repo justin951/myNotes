@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import testingAutomation.pom.APITestingIQ;
+import testingAutomation.pom.AWSIQ;
 import testingAutomation.pom.BasePage;
 import testingAutomation.pom.TestingAutomationIQ;
 import testingAutomation.pom.TestingFundamentalsIQ;
@@ -34,6 +35,10 @@ public class Main {
             TestingFundamentalsIQ testingFundamentalsIQ = new TestingFundamentalsIQ(driver);
             filepath = "src\\main\\resources\\testingFundamentalsIQ.txt";
             runTest(testingFundamentalsIQ, filepath);
+
+            AWSIQ awsIQ = new AWSIQ(driver);
+            filepath = "src\\main\\resources\\awsIQ.txt";
+            runTest(awsIQ, filepath);
         } finally {
             if (driver != null) {
                 driver.quit();
